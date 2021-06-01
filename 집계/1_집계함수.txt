@@ -1,0 +1,47 @@
+- 집계함수로
+- 레코드들의 평균, 최대, 최소같은 통계량을 뽑아야 한다.
+
+------------------------------------------------------------
+
+COUNT
+
+- 행의 개수
+SELECT COUNT(*)
+FROM Products;
+
+- 이름이 널이아닌 행의 개수
+SELECT COUNT(Name)
+FROM Products;
+
+- 이름이 널이아닌 중복되지 않는 행의 개수
+SELECT COUNT(DISTINCT Name)
+FROM Products;
+
+------------------------------------------------------------
+
+- SUM
+SELECT SUM(Price)
+FROM Products;
+
+- AVG
+- NULL값을 주의 => 5개인데 1개가 NULL이면 4로 나눔
+
+SELECT AVG(Price)
+FROM Products;
+
+SELECT SUM(Visits) COUNT(*)
+FROM sample;
+
+
+- MIN
+SELECT MIN(Price)
+FROM Products;
+
+- MAX
+SELECT MAX(Price)
+FROM Products;
+
+------------------------------------------------------------
+
+SELECT COUNT(Price), SUM(Price), AVG(Price), MIN(Price), MAX(Price)
+FROM Products;

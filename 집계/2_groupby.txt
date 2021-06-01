@@ -1,0 +1,53 @@
+SELECT *
+FROM Products
+GROUP BY SupplierID;
+
+
+- 공급자 id별 평균 상품 가격
+SELECT SupplierID, AVG(Price)
+FROM Products
+GROUP BY SupplierID;
+
+
+- 공급자 id, 카테고리별 평균 상품 가격
+SELECT SupplierID 
+     , CategoryId 
+     , AVG(Price)
+FROM Products
+GROUP BY SupplierID, CategoryId
+ORDER BY AVG(Price) DESC;
+
+
+- 공급자 id, 카테고리별 평균 상품 가격
+SELECT SupplierID 
+     , CategoryId 
+     , AVG(Price)
+FROM Products
+GROUP BY 1, 2;
+// 셀렉트의 첫번째 두번쨰 컬럼을 기준으로 그루핑
+// 대부분 이렇게 안 씀
+
+
+------------------------------------------------------------
+
+- WHERE는 GROUP BY 이전에 실행된다.
+- 그루핑 이전에 조건문이 걸려 원하는 결과가 나오지 않음
+- 그룹에 대한 조건문을 걸려면 HAVING을 사용해야 한다.
+
+SELECT SupplierID 
+     , CategoryId 
+     , AVG(Price)
+FROM Products
+GROUP BY SupplierID, CategoryId
+HAVING AVG(Price) >= 100
+ORDER BY AVG(Price) DESC;
+
+
+- AS를 이용해 SELECT한 내용에 alias를 걸 수 있다.
+
+SELECT SupplierID 
+     , CategoryId 
+     , AVG(Price) AS avg_price
+FROM Products
+GROUP BY SupplierID, CategoryId
+HAVING avg_price >= 100

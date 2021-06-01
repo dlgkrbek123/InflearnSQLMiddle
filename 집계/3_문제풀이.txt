@@ -1,0 +1,35 @@
+1. https://www.hackerrank.com/challenges/revising-aggregations-the-average-function/problem
+  SELECT AVG(population)
+  FROM CITY
+  WHERE district = 'California';
+
+2. https://www.hackerrank.com/challenges/revising-aggregations-sum/problem
+  SELECT SUM(population)
+  FROM CITY
+  WHERE district = 'California';
+
+3. https://www.hackerrank.com/challenges/revising-aggregations-the-count-function/problem
+  SELECT COUNT(*)
+  FROM CITY
+  WHERE population > 100000;
+
+4. https://www.hackerrank.com/challenges/average-population/problem
+  SELECT FLOOR(AVG(population))
+  FROM CITY;
+
+5. https://www.hackerrank.com/challenges/population-density-difference/problem 
+  SELECT MAX(population) - MIN(population)
+  FROM CITY;
+
+6. https://www.hackerrank.com/challenges/weather-observation-station-4/problem
+  SELECT COUNT(*) - COUNT(DISTINCT CITY)
+  FROM STATION;
+
+7. https://www.hackerrank.com/challenges/earnings-of-employees/problem
+  
+  SELECT (months * salary) AS total_earnings
+       , COUNT(*) 
+  FROM Employee
+  GROUP BY total_earnings
+  ORDER BY total_earnings DESC
+  LIMIT 1;
