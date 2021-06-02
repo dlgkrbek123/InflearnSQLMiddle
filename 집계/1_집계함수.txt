@@ -3,7 +3,7 @@
 
 ------------------------------------------------------------
 
-COUNT
+COUNT (행의 개수)
 
 - 행의 개수
 SELECT COUNT(*)
@@ -29,8 +29,8 @@ FROM Products;
 SELECT AVG(Price)
 FROM Products;
 
-SELECT SUM(Visits) COUNT(*)
-FROM sample;
+SELECT SUM(price) / COUNT(*) 
+FROM Products;
 
 
 - MIN

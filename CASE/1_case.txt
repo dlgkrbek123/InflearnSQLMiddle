@@ -1,0 +1,63 @@
+- if와 then같은 조건을 select에 사용
+- CASE와 END로 블락을 잡는다.
+- WHEN THEN ELSE 로 조건부 값을 내뱉는다.
+- alias로 이름을 아름답게 적용가능하다.
+
+SELECT CASE
+		WHEN categoryid = 1 THEN '음료'
+        WHEN categoryid = 2 THEN '조미료'
+        ELSE '기타'
+       END AS 'categoryName'
+FROM Products;
+
+------------------------------------------------------------
+
+- WHEN에 여러 조건을 논리연산자와 함께 사용
+
+SELECT *, 
+       CASE
+		WHEN categoryid = 1 AND SupplierID = 1 THEN '음료'
+		WHEN categoryid = 2 THEN '조미료'
+	    ELSE '기타'
+       END AS categoryName
+FROM Products;
+
+------------------------------------------------------------
+
+- CASE문으로 GROUP BY도 가능하다.
+
+SELECT CASE
+	     WHEN categoryid = 1 THEN '음료'
+         WHEN categoryid = 2 THEN '소스'
+         ELSE '이외'
+	   END AS new_category,
+       CategoryID, 
+       AVG(Price)
+FROM Products
+GROUP BY new_category;
+
+------------------------------------------------------------
+
+- 세로로 된 데이터를 가로로 펼쳐서 보고 싶다.
+- 테이블 피보팅 (구조를 바꾼 테이블을 리턴)
+
+SELECT
+  AVG(
+    CASE
+      WHEN categoryId = 1 THEN price
+      ELSE NULL
+    END
+  ) AS categroy1_price
+, AVG(
+    CASE
+      WHEN categoryId = 2 THEN price
+      ELSE NULL
+    END
+  ) AS categroy2_price
+, AVG(
+    CASE
+      WHEN categoryId = 3 THEN price
+      ELSE NULL
+    END
+  ) AS categroy3_price
+FROM Products;
