@@ -1,0 +1,18 @@
+- 같은 테이블끼리의 조인
+
+------------------------------------------------------------
+
+1. https://leetcode.com/problems/employees-earning-more-than-their-managers/
+
+SELECT l.name AS Employee
+FROM Employee AS l
+    INNER JOIN Employee AS r ON l.ManagerId = r.Id
+WHERE l.Salary > r.Salary;
+
+
+2. https://leetcode.com/problems/rising-temperature/
+
+SELECT today.id AS id
+FROM Weather AS today
+    INNER JOIN Weather AS yesterday ON DATE_SUB(today.recordDate, INTERVAL 1 DAY) = yesterday.recordDate
+WHERE today.temperature > yesterday.temperature;
