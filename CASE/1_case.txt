@@ -4,7 +4,7 @@
 - alias로 이름을 아름답게 적용가능하다.
 
 SELECT CASE
-		WHEN categoryid = 1 THEN '음료'
+	     	WHEN categoryid = 1 THEN '음료'
         WHEN categoryid = 2 THEN '조미료'
         ELSE '기타'
        END AS 'categoryName'

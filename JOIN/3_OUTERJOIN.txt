@@ -12,7 +12,7 @@ FROM Users
 SELECT *
 FROM Users
     LEFT JOIN Orders ON Users.Id = Orders.userId;
-WHERE OrderId IS NULL;
+WHERE Users.Id IS NULL;
 // 주문 한적 있는 레코드만
 
 
@@ -27,4 +27,3 @@ SELECT c.Name AS Customers
 FROM Customers AS c
     LEFT JOIN Orders AS o ON c.Id = o.CustomerId
 WHERE o.CustomerId IS NULL;
-
