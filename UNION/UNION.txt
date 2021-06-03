@@ -1,0 +1,70 @@
+- join은 테이블을 가로로 증식한다.
+- union은 테이블을 세로로 증식한다.
+
+- 테이블의 합집합
+- UNION ALL은 중복값까지 포함한다.
+
+SELECT Price
+FROM Products
+WHERE Price <= 5 OR price >= 200;
+
+
+- 유니온으로 테이블간 합집합을 형성
+SELECT Price
+FROM Products
+WHERE Price <= 5
+
+UNION
+
+SELECT Price
+FROM Products
+WHERE Price >= 200;
+
+
+- 일반 주문과 비회원 주문 모두 포함 (full outer join)
+
+SELECT *
+FROM Customers
+    LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+
+UNION
+
+SELECT *
+FROM Customers
+    RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+
+------------------------------------------------------------
+
+SELECT DISTINCT Country
+FROM Cusomters;
+
+SELECT Country
+FROM Cusomters;
+
+SELECT ALL Country
+FROM Cusomters;
+
+- ALL이 기본적으로 생략되는것이다.
+- DISTINCT가 없을시에
+
+------------------------------------------------------------
+
+1. https://www.hackerrank.com/challenges/symmetric-pairs/problem
+- 문제를 쪼개는 발상
+- union의 order by는 union된 결과에 대해 작동한다.
+
+SELECT X, Y
+FROM Functions
+WHERE X = Y
+GROUP BY X, Y
+HAVING COUNT(*) >= 2
+
+UNION
+
+SELECT l.x as X, l.y as Y
+FROM Functions AS l
+    INNER JOIN Functions AS r ON l.x = r.y AND l.y = r.x 
+WHERE l.x < r.x
+
+ORDER BY X;
