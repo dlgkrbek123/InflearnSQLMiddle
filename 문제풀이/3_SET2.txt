@@ -1,0 +1,38 @@
+1. https://www.hackerrank.com/challenges/japan-population/problem
+
+SELECT SUM(population)
+FROM CITY
+WHERE countrycode = 'JPN';
+
+
+2. https://www.hackerrank.com/challenges/weather-observation-station-2/problem
+
+SELECT 
+  ROUND(SUM(lat_n), 2) AS lat 
+ ,ROUND(SUM(long_w), 2) AS lon
+FROM Station;
+
+
+3. https://www.hackerrank.com/challenges/weather-observation-station-18/problem
+
+SELECT ROUND(MAX(lat_n) - MIN(lat_n) + MAX(long_w) - MIN(long_w), 4)
+FROM Station;
+
+
+4. https://www.hackerrank.com/challenges/the-company/problem
+- 전체 테이블을 봐야 한다. (하위 계층을 안가진애들이 있을 수 있다. 직원테이블만으로는 안됨)
+
+SELECT 
+  c.company_code, 
+  c.founder, 
+  COUNT(DISTINCT l.lead_manager_code), 
+  COUNT(DISTINCT s.senior_manager_code), 
+  COUNT(DISTINCT m.manager_code),
+  COUNT(DISTINCT e.employee_code)
+FROM Company AS c
+    LEFT JOIN Lead_Manager AS l ON c.company_code = l.company_code 
+    LEFT JOIN Senior_Manager AS s ON c.company_code = s.company_code
+    LEFT JOIN Manager AS m ON c.company_code = m.company_code
+    LEFT JOIN Employee AS e ON c.company_code = e.company_code
+GROUP BY c.company_code, c.founder
+ORDER BY c.company_code;
